@@ -11,28 +11,28 @@ Add the following to your `docker-compose.yaml`:
     build: ./weather
     restart: always
     environment: 
-      - output=weather_1
-      - above_temperature=10
-      - below_precipitation=15
+      - OUTPUT=weather_1
+      - ABOVE_TEMPERATURE=10
+      - BELOW_PRECIPITATION=15
 ```
 
 ___Available variables___
 
-- `output`: MQTT topic to publish the results to
-- `update_frequency`: how often (in minutes) to fetch the weather forecast
-- `above_temperature`: will publish '1' when current temperature (in C) is above this temperature, '0' otherwise
-- `below_temperature`: will publish '1' when current temperature is below this temperature, '0' otherwise
-- `above_precipitation`: will publish '1' when forecast (for next 12 hours) calls for precipitation amount (in mm) that is above this value, '0' otherwise
-- `below_precipitation`: will publish '1' when forecast (for next 12 hours) calls for precipitation amount that is below this value, '0' otherwise
+- `OUTPUT`: MQTT topic to publish the results to
+- `UPDATE_FREQUENCY`: how often (in minutes) to fetch the weather forecast
+- `ABOVE_TEMPERATURE`: will publish '1' when current temperature (in C) is above this temperature, '0' otherwise
+- `BELOW_TEMPERATURE`: will publish '1' when current temperature is below this temperature, '0' otherwise
+- `ABOVE_PRECIPITATION`: will publish '1' when forecast (for next 12 hours) calls for precipitation amount (in mm) that is above this value, '0' otherwise
+- `BELOW_PRECIPITATION`: will publish '1' when forecast (for next 12 hours) calls for precipitation amount that is below this value, '0' otherwise
 
-All the temperature/precipitation arguments are ANDed together, i.e. if both (above/below) temperature arguments are set, it will only publish '1' when the temperature(T) is `above_temperature` < T < `below_temperature`. if all four are set, then it will only publish '1' if temperature is `above_temperature` < T < `below_temperature` and precipitation (P) is `above_precipitation` < P < `below_precipitation`.
+All the temperature/precipitation arguments are ANDed together, i.e. if both (above/below) temperature arguments are set, it will only publish '1' when the temperature(T) is `ABOVE_TEMPERATURE` < T < `BELOW_TEMPERATURE`. if all four are set, then it will only publish '1' if temperature is `ABOVE_TEMPERATURE` < T < `BELOW_TEMPERATURE` and precipitation (P) is `ABOVE_PRECIPITATION` < P < `BELOW_PRECIPITATION`.
 
 ___Environment variables defaults___
 
-- `output`: "_weather_"
-- `update_frequency`: 30
-- `above_temperature`: 10 
-> ___N.B.___: `above_temperature` is set to 10 by default _only_ if no other temperature/precipitation parameter is set.
+- `OUTPUT`: weather
+- `UPDATE_FREQUENCY`: 30
+- `ABOVE_TEMPERATURE`: 10 
+> ___N.B.___: `ABOVE_TEMPERATURE` is set to 10 by default _only_ if no other temperature/precipitation parameter is set.
 
 ___Tests___
 

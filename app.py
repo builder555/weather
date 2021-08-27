@@ -5,16 +5,16 @@ from time import sleep
 import os
 
 if __name__== '__main__':
-    topic = os.environ.get('output','weather')
-    frequency = os.environ.get('update_frequency','30')
+    topic = os.environ.get('OUTPUT','weather')
+    frequency = int(os.environ.get('UPDATE_FREQUENCY','30'))
     weather_vars = [
-        'above_temperature',
-        'below_precipitation',
-        'below_temperature',
-        'above_precipitation'
+        'ABOVE_TEMPERATURE',
+        'BELOW_PRECIPITATION',
+        'BELOW_TEMPERATURE',
+        'ABOVE_PRECIPITATION'
     ]
     publish_threasholds = {
-        env_var: float(os.environ.get(env_var)) for env_var in weather_vars 
+        env_var.lower(): float(os.environ.get(env_var)) for env_var in weather_vars 
                                         if os.environ.get(env_var) is not None
     }
     if not publish_threasholds:
