@@ -1,6 +1,6 @@
 ### Balena Blocks: binary weather
 
-Uses an [API](https://api.met.no/weatherapi) to get weather, and publish a message to MQTT based on set conditions.
+Uses an [API](https://api.met.no/weatherapi) to get weather, and publish a message to MQTT based on set conditions. Uses public IP to get location.
 
 ___Usage a block___
 
@@ -24,12 +24,13 @@ ___Available variables___
 - `BELOW_TEMPERATURE`: will publish '1' when current temperature is below this temperature, '0' otherwise
 - `ABOVE_PRECIPITATION`: will publish '1' when forecast (for next 12 hours) calls for precipitation amount (in mm) that is above this value, '0' otherwise
 - `BELOW_PRECIPITATION`: will publish '1' when forecast (for next 12 hours) calls for precipitation amount that is below this value, '0' otherwise
+- `LOCATION`: location to use for weather, specified in latitude,longitude format. If not specified, geolocation of the public IP address will be used
 
-All the temperature/precipitation arguments are ANDed together, i.e. if both (above/below) temperature arguments are set, it will only publish '1' when the temperature(T) is `ABOVE_TEMPERATURE` < T < `BELOW_TEMPERATURE`. if all four are set, then it will only publish '1' if temperature is `ABOVE_TEMPERATURE` < T < `BELOW_TEMPERATURE` and precipitation (P) is `ABOVE_PRECIPITATION` < P < `BELOW_PRECIPITATION`.
+All the temperature/precipitation arguments are ANDed together, i.e. if both (above/below) temperature arguments are set, it will only publish '1' when the temperature(T) is `ABOVE_TEMPERATURE` < T < `BELOW_TEMPERATURE`. if all four are set, then it will only publish '1' if temperature is `ABOVE_TEMPERATURE` < T < `BELOW_TEMPERATURE` AND precipitation (P) is `ABOVE_PRECIPITATION` < P < `BELOW_PRECIPITATION`.
 
 ___Environment variables defaults___
 
-- `OUTPUT`: weather
+- `OUTPUT`: "weather"
 - `UPDATE_FREQUENCY`: 30
 - `ABOVE_TEMPERATURE`: 10 
 > ___N.B.___: `ABOVE_TEMPERATURE` is set to 10 by default _only_ if no other temperature/precipitation parameter is set.
