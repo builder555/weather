@@ -64,3 +64,4 @@ Given the code
 A message will be published every 30 minutes with payload '1' under topic 'weather' if the temperature at that time is above 15C or '0' if it's 15C or lower.
 
 > N.B. mqtt connects to host 'mqtt' on port 1883
+_logo image by [yusup saputra](https://thenounproject.com/dysastudio)_
